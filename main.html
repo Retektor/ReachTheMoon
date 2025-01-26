@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reach the Moon!</title>
+        <link rel="icon" type="image/x-icon" href="img/MoonIcon.png">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+<body>
+    <!-- Аудио -->
+    <audio id="clickSound">
+        <source src="sfx/click.ogg" type="audio/ogg" preload="auto">
+    </audio>
+
+    <!-- Номер версии -->
+    <p style="margin-top: 1vh; margin-left: 1vh;">v0.1 prototype</p>
+
+    <div class="main_stats">
+        <h3><span id="energy_count"></span> Дж</h3>
+        <h3><span id="wood_count"></span> ед. дров  </h3>
+    </div>
+    <hr>
+    <div class="contents">
+        <div class="trees_stats">
+            <p><span id="trees_count"></span> деревьев</p>
+            <div class="cut_tree">
+                <button onclick="cut_tree();">Вырубить дерево</button>
+                <p><span id="cut_time"></span> секунд</p>
+            </div>
+            <div class="plant_tree">
+                <button onclick="plant_tree();">Посадить дерево (-1 Дж)</button>
+                <p><span id="trees_time"></span> секунд</p>
+            </div>
+        </div>
+        <div class="boiler">
+            <p>Наполнение бойлера: 20 л.</p>
+            <p>Текущая загрузка бойлера: <span id="boiler_load"></span> ед. дров</p>
+            <p>Скорость сжигания: 0.1 ед./с</p>
+            <div class="boiler_load">
+                <button onclick="boiler_remove10();">-10</button>
+                <button onclick="boiler_remove1();">-1</button>
+                <button onclick="boiler_burn();">Начать сжигание</button>
+                <button>Налить воды</button>
+                <button onclick="boiler_add1();">+1</button>
+                <button onclick="boiler_add10();">+10</button>
+            </div>
+        </div>
+        <div class="upgrades_window">
+            <button>Ускорить сжигание на 10%</button>
+            <button>Ускорить рубку и посадку дерева на 10%</button>
+            <button>Увеличить количество выделяемой энергии на 25%</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>
