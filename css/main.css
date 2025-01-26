@@ -1,10 +1,25 @@
+@font-face {
+    font-family: OpenSans-Regular;
+    src: url(../fonts/OpenSans-Regular.ttf);
+}
+
+@keyframes incorrect_input{
+    from {background-color: rgb(255, 93, 93);}
+    to {background-color: white;}
+}
+
 *{
     margin: 0;
     padding: 0;
+    font-family: OpenSans-Regular;
+}
+
+.body{
+    background-color: aqua;
 }
 
 .main_stats{
-    padding: 3vh 2vw 3vh 2vw;
+    padding: 1.5vh 0vw 1.5vh 0vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,7 +29,16 @@
 .contents{
     display: flex;
     justify-content: space-around;
-    margin-top: 5vh;
+    margin-top: 2vh;
+    width: 100%;
+}
+
+.left_blocks{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    margin: 0px 3vw 0px 3vw;
 }
 
 .trees_stats{
@@ -22,8 +46,26 @@
     flex-direction: column;
     align-items: center;
     gap: 2vh;
-    background-color: rgba(212, 134, 44, 0.808);
-    padding: 2vh 2vw 2vh 2vw;
+    background-image: linear-gradient(rgb(230, 158, 91), rgb(151, 98, 48));
+    padding-bottom: 3vh;
+}
+
+.trees_header{
+    width: 100%;
+    background-color: rgb(182, 116, 55);
+}
+
+.trees_header-txt{
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    margin: 1vh 1vw 1vh 1vh;
+    color: white;
+}
+
+.trees_stats button{
+    padding: 0vh 0.5vw 0vh 0.5vw;
+    background-color: white;
 }
 
 .cut_tree{
@@ -39,11 +81,31 @@
 }
 
 .boiler{
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 2vh 2vw 2vh 2vw;
+    align-items: center;
+    padding-bottom: 3vh;
     gap: 1vh;
-    background-color: rgb(177, 177, 177);
+    background-image: linear-gradient(rgb(194, 194, 194), rgb(187, 168, 135));
+}
+
+.boiler_header{
+    background-color: rgb(187, 168, 135);
+    width: 100%;
+}
+
+.boiler_header-txt{
+    display: flex;
+    align-items: center;
+    gap: 0.7vw;
+    margin: 1vh 1vw 1vh 1.5vh;
+}
+
+.boiler_text{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
 }
 
 .boiler_load{
@@ -52,8 +114,52 @@
     gap: 1vw;
 }
 
+.boiler_load button{
+    padding: 0vh 0.5vw 0vh 0.5vw;
+}
+
+.steam_generator{
+    background-color: rgb(220, 227, 233);
+}
+
+.steam_generator_header{
+    background-color: rgb(181, 196, 209);
+}
+
+.steam_generator_header-txt{
+    display: flex;
+    align-items: center;
+    gap: 0.7vw;
+    padding: 1vh 1vw 1vh 1vh;
+}
+
+.steam_generator_content{
+    display: flex;
+    justify-content: center;
+    padding: 2vh 0vw 2vh 0vw;
+}
+
 .upgrades_window{
     display: flex;
     flex-direction: column;
     gap: 2vh;
+    width: 25vw;
+    margin: 0px 3vw 0px 3vw;
+}
+
+.upgrades_window button{
+    padding: 0vh 0.5vw 0vh 0.5vw;
+}
+
+.versionNumber{
+    position: fixed;
+    top: 97vh;
+    left: 0.5vw;
+}
+
+.autosave{
+    position: fixed;
+    top: 1vh;
+    left: 0.5vw;
+    opacity: 0%;
 }

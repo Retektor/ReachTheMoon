@@ -1,6 +1,12 @@
+@font-face {
+    font-family: OpenSans-Regular;
+    src: url(../fonts/OpenSans-Regular.ttf);
+}
+
 *{
     margin: 0;
     padding: 0;
+    font-family: OpenSans-Regular;
 }
 
 .text{
@@ -15,4 +21,19 @@
     width: 5vw;
     height: 3vh;
     scale: 120%;
+}
+
+.versionNumber{
+    position: fixed;
+    top: 97vh;
+    left: 0.5vw;
+}
+
+.patchnotes{
+    margin-top: 13vh;
+    border: 2px solid rgb(124, 124, 124);
+    padding: 1vh 1vw 1vh 1.5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
 }

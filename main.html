@@ -12,44 +12,89 @@
     <audio id="clickSound">
         <source src="sfx/click.ogg" type="audio/ogg" preload="auto">
     </audio>
+    <audio id="denySound">
+        <source src="sfx/wrong.mp3" type="audio/mp3" preload="auto">
+    </audio>
+    <audio id="autosaveAudio">
+        <source src="sfx/autosave.mp3" type="audio/mp3" preload="auto">
+    </audio>
 
-    <!-- Номер версии -->
-    <p style="margin-top: 1vh; margin-left: 1vh;">v0.1 prototype</p>
-
+    <!-- Номер версии и прочие технические элементы -->
+    <div class="versionNumber">
+        <p>v0.2</p>
+    </div>
+    <div class="autosave" id="autosave">
+        <h3>Автосохранение...</h3>
+    </div>
+    
     <div class="main_stats">
         <h3><span id="energy_count"></span> Дж</h3>
         <h3><span id="wood_count"></span> ед. дров  </h3>
     </div>
     <hr>
     <div class="contents">
-        <div class="trees_stats">
-            <p><span id="trees_count"></span> деревьев</p>
-            <div class="cut_tree">
-                <button onclick="cut_tree();">Вырубить дерево</button>
-                <p><span id="cut_time"></span> секунд</p>
+        <div class="left_blocks">
+            <div class="trees_stats">
+                <div class="trees_header">
+                    <div class="trees_header-txt">
+                        <img src="img/SaplingIcon.png" alt="SaplingIcon" style="width: 50px;">
+                        <h3>Сад</h3>
+                    </div>
+                </div>
+                <p><span id="trees_count"></span> деревьев</p>
+                <div class="cut_tree">
+                    <img src="img/AxeIcon.png" alt="AxeIcon" style="width: 50px;">
+                    <button onclick="cut_tree();" id="cut_button">Вырубить дерево</button>
+                    <p><span id="cut_clicks"></span> кликов</p>
+                </div>
+                <div class="plant_tree">
+                    <img src="img/BoneMeal.png" alt="BoneMeal" style="width: 50px;">
+                    <button onclick="plant_tree();" id="plant_button">Посадить дерево (-1 Дж)</button>
+                    <p><span id="trees_time"></span> секунд</p>
+                </div>
             </div>
-            <div class="plant_tree">
-                <button onclick="plant_tree();">Посадить дерево (-1 Дж)</button>
-                <p><span id="trees_time"></span> секунд</p>
+            <div class="boiler">
+                <div class="boiler_header">
+                    <div class="boiler_header-txt">
+                        <img src="img/FurnaceIcon.png" alt="FurnaceIcon" style="width: 50px;">
+                        <h3>Бойлер</h3>
+                    </div>
+                </div>
+                <div class="boiler_text">
+                    <p>Текущая загрузка бойлера: <span id="boiler_load"></span> ед. дров</p>
+                    <p>Наполнение бойлера: <span id="water_volume"></span>/<span id="max_water_volume"></span> л.</p>
+                    <p>Скорость сжигания: <span id="burn_speed">0.1</span> ед./с</p>
+                </div>
+                <div class="boiler_load">
+                    <button onclick="boiler_remove10();">-10</button>
+                    <button onclick="boiler_remove1();">-1</button>
+                    <button onclick="boiler_burn();" id="burn_button">Начать сжигание</button>
+                    <button onclick="pour_water();">Налить воды</button>
+                    <button onclick="boiler_add1();">+1</button>
+                    <button onclick="boiler_add10();">+10</button>
+                </div>
             </div>
-        </div>
-        <div class="boiler">
-            <p>Наполнение бойлера: 20 л.</p>
-            <p>Текущая загрузка бойлера: <span id="boiler_load"></span> ед. дров</p>
-            <p>Скорость сжигания: 0.1 ед./с</p>
-            <div class="boiler_load">
-                <button onclick="boiler_remove10();">-10</button>
-                <button onclick="boiler_remove1();">-1</button>
-                <button onclick="boiler_burn();">Начать сжигание</button>
-                <button>Налить воды</button>
-                <button onclick="boiler_add1();">+1</button>
-                <button onclick="boiler_add10();">+10</button>
+            <div class="steam_generator">
+                <div class="steam_generator_header">
+                    <div class="steam_generator_header-txt">
+                        <img src="img/SteamIcon.png" alt="SteamGenerator" style="width: 50px;">
+                        <h3>Парогенератор</h3>
+                    </div>
+                </div>
+                <div class="steam_generator_content">
+                    <p><span id="steamGenerator_count"></span> литров пара</p>
+                </div>
             </div>
         </div>
         <div class="upgrades_window">
-            <button>Ускорить сжигание на 10%</button>
-            <button>Ускорить рубку и посадку дерева на 10%</button>
-            <button>Увеличить количество выделяемой энергии на 25%</button>
+            <button><h4>Крепкий корпус</h4><p>Ускорить сжигание на 0.2 ед./c</p></button>
+            <button><h4>Вторые руки</h4><p>Увеличить количество сажаемых/вырубаемых деревьев в 2 раза</p></button>
+            <button><h4>Острый топор</h4><p>Уменьшить количество кликов рубки на 5</p></button>
+            <button><h4>Теплоизоляция</h4><p>Увеличить скорость сжигания на 0.5 ед./c</p></button>
+            <button><h4>Удобрения</h4><p>Увеличить скорость сажания дерева на 20%</p></button>
+            <button><h4>Новый сорт</h4><p>10% шанс посадить крепкое дерево, которое даёт в 2 раза больше дерева</p></button>
+            <button><h4>Замкнутая цепь сгорания</h4><p>За каждую секунду, который горит бойлер, увеличение скорости на 1%</p></button>
+            <button><h4>Водопроводная система</h4><p>Налитие воды, когда она заканчивается</p></button>
         </div>
     </div>
 
