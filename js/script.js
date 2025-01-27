@@ -116,6 +116,22 @@ function plant_tree(){
     }
 }
 
+function speed_up(){
+    if (plant_tree_t < 10){
+        plant_tree_t = plant_tree_t - 0.05;
+        update();
+    }
+    else{
+        playDenySound();
+        document.getElementById("speed_up_button").style.backgroundColor = "rgb(255, 93, 93)";
+        setTimeout(() => {
+            document.getElementById("speed_up_button").style.transitionDuration = "0.5s";
+            document.getElementById("speed_up_button").style.backgroundColor = "white";
+        }, 100)
+        document.getElementById("speed_up_button").style.transitionDuration = "0s";
+    }
+}
+
 
 function cut_tree(){
     playClickSound();
