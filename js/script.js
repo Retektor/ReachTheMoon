@@ -17,7 +17,11 @@ boiler_active = false;
 
 const clickSound = document.getElementById("clickSound");
 const denySound = document.getElementById("denySound");
-const autosaveSound = document.getElementById("autosaveAudio");
+const autosaveSound = document.getElementById("autosaveSound");
+const burnStartSound = document.getElementById("burnStartSound");
+const burnLoopSound = document.getElementById("burnLoopSound");
+burnLoopSound.loop = true;
+const burnStopSound = document.getElementById("burnStopSound");
 denySound.volume = 0.3;
 autosaveSound.volume = 0.1;
 
@@ -49,17 +53,6 @@ function save(){
     }
 
 
-function playClickSound(){
-    clickSound.load();
-    clickSound.play();
-}
-    
-    
-function playDenySound(){
-    denySound.load();
-    denySound.play();
-}
-
 setInterval(() => {
     save();
     autosaveSound.play();
@@ -75,20 +68,9 @@ update();
 // Инициализация завершена
 
 
-
-// К версии 0.3 сделать одновременное сажание деревьев через класс, объекты и массив сада
-
-// class Tree{
-//     constructor () {
-//         this.growthTime = 10000;
-//     }
-// }
-
-// const trees_garden = [];
-
-
 function plant_tree(){
-    playClickSound();
+    clickSound.load();
+    clickSound.play();
     if (energy >= 1 && plant_tree_t == Number((10).toFixed(2))){
         --energy;
         let flag = setInterval(() => {
@@ -106,7 +88,8 @@ function plant_tree(){
         }, 100);
     }
     else{
-        playDenySound();
+        denySound.load();
+        denySound.play();
         document.getElementById("plant_button").style.backgroundColor = "rgb(255, 93, 93)";
         setTimeout(() => {
             document.getElementById("plant_button").style.transitionDuration = "0.5s";
@@ -118,11 +101,16 @@ function plant_tree(){
 
 function speed_up(){
     if (plant_tree_t < 10){
+        clickSound.load();
+        clickSound.play();
         plant_tree_t = plant_tree_t - 0.05;
         update();
     }
     else{
-        playDenySound();
+        clickSound.load();
+        clickSound.play();
+        denySound.load();
+        denySound.play();
         document.getElementById("speed_up_button").style.backgroundColor = "rgb(255, 93, 93)";
         setTimeout(() => {
             document.getElementById("speed_up_button").style.transitionDuration = "0.5s";
@@ -134,7 +122,8 @@ function speed_up(){
 
 
 function cut_tree(){
-    playClickSound();
+    clickSound.load();
+    clickSound.play();
     if (trees > 0){
         --cut_tree_c;
         if (cut_tree_c == 0){
@@ -145,7 +134,8 @@ function cut_tree(){
         update();
     }
     else{
-        playDenySound();
+        denySound.load();
+        denySound.play();
         document.getElementById("cut_button").style.backgroundColor = "rgb(255, 93, 93)";
         setTimeout(() => {
             document.getElementById("cut_button").style.transitionDuration = "0.5s";
@@ -157,7 +147,8 @@ function cut_tree(){
 
 
 function boiler_add1(){
-    playClickSound();
+    clickSound.load();
+    clickSound.play();
     if (wood > 0 && boiler_active == false) {
         ++boiler_load;
         --wood;
@@ -167,7 +158,8 @@ function boiler_add1(){
 
 
 function boiler_add10(){
-    playClickSound();
+    clickSound.load();
+    clickSound.play();
     if (wood >= 10 && boiler_active == false) {
         boiler_load = boiler_load + 10;
         wood = wood - 10;
@@ -177,7 +169,8 @@ function boiler_add10(){
 
 
 function boiler_remove1(){
-    playClickSound();
+    clickSound.load();
+    clickSound.play();
     if (boiler_load > 0 && boiler_active == false) {
         --boiler_load;
         ++wood;
@@ -187,7 +180,8 @@ function boiler_remove1(){
 
 
 function boiler_remove10(){
-    playClickSound();
+    clickSound.load();
+    clickSound.play();
     if (boiler_load >= 10 && boiler_active == false) {
         boiler_load = boiler_load - 10;
         wood = wood + 10;
@@ -197,8 +191,14 @@ function boiler_remove10(){
 
 
 function boiler_burn(){
-    playClickSound();
+    clickSound.load();
+    clickSound.play();
     if (boiler_load > 0 && boiler_active == false && water_volume > 0){
+        burnStartSound.play();
+        setTimeout(() => {
+            burnLoopSound.load();
+            burnLoopSound.play();
+        }, 500)
         let flag = setInterval(() => {
             if (boiler_load > 0 && water_volume > 0){
                 boiler_active = true;
@@ -209,6 +209,10 @@ function boiler_burn(){
                 update();
             }
             else{
+                burnLoopSound.load();
+                burnStopSound.play();
+                burnLoopSound.pause();
+                burnLoopSound.currentTime = 0;
                 clearInterval(flag)
                 boiler_active = false;
                 update();
@@ -217,7 +221,8 @@ function boiler_burn(){
         }, 100)
     }
     else{
-        playDenySound();
+        denySound.load();
+        denySound.play();
         document.getElementById("burn_button").style.backgroundColor = "rgb(255, 93, 93)";
         setTimeout(() => {
             document.getElementById("burn_button").style.transitionDuration = "0.5s";
@@ -229,7 +234,8 @@ function boiler_burn(){
 
 
 function pour_water(){
-    playClickSound();
+    clickSound.load();
+    clickSound.play();
     if (water_volume < max_water_volume && pouring_water == false) {
         let flag = setInterval(() => {
             if (water_volume < max_water_volume){
