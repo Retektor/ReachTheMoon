@@ -22,6 +22,7 @@ const burnStartSound = document.getElementById("burnStartSound");
 const burnLoopSound = document.getElementById("burnLoopSound");
 burnLoopSound.loop = true;
 const burnStopSound = document.getElementById("burnStopSound");
+const SparkSound = document.getElementById("SparkSound");
 denySound.volume = 0.3;
 autosaveSound.volume = 0.1;
 
@@ -30,6 +31,16 @@ function update(){
     document.getElementById("energy_count").innerHTML = energy.toFixed(2);
     document.getElementById("wood_count").innerHTML = wood;
     document.getElementById("trees_count").innerHTML = trees;
+    if (trees == 1){
+        document.getElementById("trees_word").innerHTML = 'о';
+    }
+    else if (trees > 1 && trees < 5){
+        document.getElementById("trees_word").innerHTML = 'а';
+    }
+    else if ((trees == 0) || (trees >= 5 && trees < 21)){
+        document.getElementById("trees_word").innerHTML = 'ьев';
+    }
+
     document.getElementById("trees_time").innerHTML = plant_tree_t.toFixed(1);
     document.getElementById("cut_clicks").innerHTML = cut_tree_c;
     document.getElementById("boiler_load").innerHTML = boiler_load;
@@ -93,7 +104,7 @@ function plant_tree(){
         document.getElementById("plant_button").style.backgroundColor = "rgb(255, 93, 93)";
         setTimeout(() => {
             document.getElementById("plant_button").style.transitionDuration = "0.5s";
-            document.getElementById("plant_button").style.backgroundColor = "white";
+            document.getElementById("plant_button").style.backgroundColor = "rgb(210, 125, 50)";
         }, 100)
         document.getElementById("plant_button").style.transitionDuration = "0s";
     }
@@ -114,7 +125,7 @@ function speed_up(){
         document.getElementById("speed_up_button").style.backgroundColor = "rgb(255, 93, 93)";
         setTimeout(() => {
             document.getElementById("speed_up_button").style.transitionDuration = "0.5s";
-            document.getElementById("speed_up_button").style.backgroundColor = "white";
+            document.getElementById("speed_up_button").style.backgroundColor = "rgb(210, 125, 50)";
         }, 100)
         document.getElementById("speed_up_button").style.transitionDuration = "0s";
     }
@@ -139,7 +150,7 @@ function cut_tree(){
         document.getElementById("cut_button").style.backgroundColor = "rgb(255, 93, 93)";
         setTimeout(() => {
             document.getElementById("cut_button").style.transitionDuration = "0.5s";
-            document.getElementById("cut_button").style.backgroundColor = "white";
+            document.getElementById("cut_button").style.backgroundColor = "rgb(210, 125, 50)";
         }, 100)
         document.getElementById("cut_button").style.transitionDuration = "0s";
     }
@@ -154,6 +165,16 @@ function boiler_add1(){
         --wood;
         update();
     }
+    else{
+        denySound.load();
+        denySound.play();
+        document.getElementById("boiler_add1").style.backgroundColor = "rgb(255, 93, 93)";
+        setTimeout(() => {
+            document.getElementById("boiler_add1").style.transitionDuration = "0.5s";
+            document.getElementById("boiler_add1").style.backgroundColor = "rgb(245, 211, 152)";
+        }, 100)
+        document.getElementById("boiler_add1").style.transitionDuration = "0s";
+    }
 }
 
 
@@ -164,6 +185,16 @@ function boiler_add10(){
         boiler_load = boiler_load + 10;
         wood = wood - 10;
         update();
+    }
+    else {
+        denySound.load();
+        denySound.play();
+        document.getElementById("boiler_add10").style.backgroundColor = "rgb(255, 93, 93)";
+        setTimeout(() => {
+            document.getElementById("boiler_add10").style.transitionDuration = "0.5s";
+            document.getElementById("boiler_add10").style.backgroundColor = "rgb(245, 211, 152)";
+        }, 100)
+        document.getElementById("boiler_add10").style.transitionDuration = "0s";
     }
 }
 
@@ -176,6 +207,16 @@ function boiler_remove1(){
         ++wood;
         update();
     }
+    else{
+        denySound.load();
+        denySound.play();
+        document.getElementById("boiler_remove1").style.backgroundColor = "rgb(255, 93, 93)";
+        setTimeout(() => {
+            document.getElementById("boiler_remove1").style.transitionDuration = "0.5s";
+            document.getElementById("boiler_remove1").style.backgroundColor = "rgb(245, 211, 152)";
+        }, 100)
+        document.getElementById("boiler_remove1").style.transitionDuration = "0s";
+    }
 }
 
 
@@ -187,6 +228,16 @@ function boiler_remove10(){
         wood = wood + 10;
         update();
     }
+    else {
+        denySound.load();
+        denySound.play();
+        document.getElementById("boiler_remove10").style.backgroundColor = "rgb(255, 93, 93)";
+        setTimeout(() => {
+            document.getElementById("boiler_remove10").style.transitionDuration = "0.5s";
+            document.getElementById("boiler_remove10").style.backgroundColor = "rgb(245, 211, 152)";
+        }, 100)
+        document.getElementById("boiler_remove10").style.transitionDuration = "0s";
+    }
 }
 
 
@@ -194,6 +245,9 @@ function boiler_burn(){
     clickSound.load();
     clickSound.play();
     if (boiler_load > 0 && boiler_active == false && water_volume > 0){
+        SparkSound.load();
+        SparkSound.play()
+        burnStartSound.load();
         burnStartSound.play();
         setTimeout(() => {
             burnLoopSound.load();
@@ -226,7 +280,7 @@ function boiler_burn(){
         document.getElementById("burn_button").style.backgroundColor = "rgb(255, 93, 93)";
         setTimeout(() => {
             document.getElementById("burn_button").style.transitionDuration = "0.5s";
-            document.getElementById("burn_button").style.backgroundColor = "white";
+            document.getElementById("burn_button").style.backgroundColor = "rgb(245, 211, 152)";
         }, 100)
         document.getElementById("burn_button").style.transitionDuration = "0s";
     }
@@ -252,5 +306,15 @@ function pour_water(){
                 return;
             }
         }, 100)
+    }
+    else{
+        denySound.load();
+        denySound.play();
+        document.getElementById("pour_water").style.backgroundColor = "rgb(255, 93, 93)";
+        setTimeout(() => {
+            document.getElementById("pour_water").style.transitionDuration = "0.5s";
+            document.getElementById("pour_water").style.backgroundColor = "rgb(245, 211, 152)";
+        }, 100)
+        document.getElementById("pour_water").style.transitionDuration = "0s";
     }
 }

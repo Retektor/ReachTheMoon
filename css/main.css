@@ -1,7 +1,8 @@
 @font-face {
-    font-family: OpenSans-Regular;
-    src: url(fonts/OpenSans-Regular.ttf);
+    font-family: Montserrat-Regular;
+    src: url(../fonts/Montserrat-Medium.ttf);
 }
+
 
 @keyframes incorrect_input{
     from {background-color: rgb(255, 93, 93);}
@@ -11,7 +12,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: OpenSans-Regular;
+    font-family: Montserrat-Regular;
 }
 
 .body{
@@ -64,8 +65,15 @@
 }
 
 .trees_stats button{
-    padding: 0vh 0.5vw 0vh 0.5vw;
-    background-color: white;
+    padding: 0.5vh 0.5vw 0.5vh 0.5vw;
+    background-color: rgb(210, 125, 50);
+    border: 2px solid rgb(129, 72, 19);
+    font-size: 12pt;
+    color: rgb(0, 0, 0);
+}
+
+.trees_stats button:hover{
+    background-color: rgb(195, 110, 35);
 }
 
 .cut_tree{
@@ -86,7 +94,7 @@
     flex-direction: column;
     align-items: center;
     padding-bottom: 3vh;
-    gap: 1vh;
+    gap: 3vh;
     background-image: linear-gradient(rgb(194, 194, 194), rgb(187, 168, 135));
 }
 
@@ -116,6 +124,14 @@
 
 .boiler_load button{
     padding: 0vh 0.5vw 0vh 0.5vw;
+    border: 2px solid rgb(163, 140, 101);
+    background-color: rgb(245, 211, 152);
+    padding: 0.5vh 0.5vw 0.5vh 0.5vw;
+    font-size: 12pt;
+}
+
+.boiler_load button:hover{
+    background-color: rgb(230, 196, 137);
 }
 
 .steam_generator{

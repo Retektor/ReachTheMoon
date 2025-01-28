@@ -27,13 +27,16 @@
     <audio id="burnStopSound">
         <source src="sfx/burnStop.wav" type="audio/wav" preload="auto">
     </audio>
+    <audio id="SparkSound">
+        <source src="sfx/spark.wav" type="audio/wav" preload="auto">
+    </audio>
 
     <!-- Номер версии и прочие технические элементы -->
     <div class="versionNumber">
         <p>v0.2</p>
     </div>
     <div class="autosave" id="autosave">
-        <img src="img/save.png" alt="saveIcon" style="width: 50px;">
+        <p>Автосохранение...</p>
     </div>
     
     <div class="main_stats">
@@ -50,10 +53,10 @@
                         <h3>Сад</h3>
                     </div>
                 </div>
-                <p><span id="trees_count"></span> деревьев</p>
+                <h3><span id="trees_count"></span> дерев<span id="trees_word"></span></h3>
                 <div class="cut_tree">
                     <img src="img/AxeIcon.png" alt="AxeIcon" style="width: 50px;">
-                    <button onclick="cut_tree();" id="cut_button">Вырубить дерево</button>
+                    <button onclick="cut_tree();" id="cut_button" class="cut_button">Вырубить дерево</button>
                     <p><span id="cut_clicks"></span> кликов</p>
                 </div>
                 <div class="plant_tree">
@@ -76,12 +79,12 @@
                     <p>Скорость сжигания: <span id="burn_speed">0.1</span> ед./с</p>
                 </div>
                 <div class="boiler_load">
-                    <button onclick="boiler_remove10();">-10</button>
-                    <button onclick="boiler_remove1();">-1</button>
-                    <button onclick="boiler_burn();" id="burn_button">Начать сжигание</button>
-                    <button onclick="pour_water();">Налить воды</button>
-                    <button onclick="boiler_add1();">+1</button>
-                    <button onclick="boiler_add10();">+10</button>
+                    <button onclick="boiler_remove10();" id="boiler_remove10">-10</button>
+                    <button onclick="boiler_remove1();" id="boiler_remove1">-1</button>
+                    <button onclick="boiler_burn();" id="burn_button" class="boiler_burn">Начать сжигание</button>
+                    <button onclick="pour_water();" id="pour_water">Налить воды</button>
+                    <button onclick="boiler_add1();" id="boiler_add1">+1</button>
+                    <button onclick="boiler_add10();" id="boiler_add10">+10</button>
                 </div>
             </div>
             <div class="steam_generator">

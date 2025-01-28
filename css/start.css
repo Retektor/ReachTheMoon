@@ -1,12 +1,12 @@
 @font-face {
-    font-family: OpenSans-Regular;
-    src: url(fonts/OpenSans-Regular.ttf);
+    font-family: Montserrat-Regular;
+    src: url(../fonts/Montserrat-Regular.ttf);
 }
 
 *{
     margin: 0;
     padding: 0;
-    font-family: OpenSans-Regular;
+    font-family: Montserrat-Regular;
 }
 
 .text{
@@ -30,10 +30,12 @@
 }
 
 .patchnotes{
-    margin-top: 13vh;
+    margin-top: 5vh;
     border: 2px solid rgb(124, 124, 124);
     padding: 1vh 1vw 1vh 1.5vw;
     display: flex;
     flex-direction: column;
     gap: 2vh;
+    height: 35vh;
+    overflow-y: scroll;
 }
