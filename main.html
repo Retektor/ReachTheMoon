@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="boiler_text">
-                    <p>Текущая загрузка бойлера: <span id="boiler_load"></span> ед. дров</p>
+                    <h3>Текущая загрузка бойлера: <span id="boiler_load"></span> ед. дров</h3>
                     <p>Наполнение бойлера: <span id="water_volume"></span>/<span id="max_water_volume"></span> л.</p>
                     <p>Скорость сжигания: <span id="burn_speed">0.1</span> ед./с</p>
                 </div>
@@ -95,7 +95,15 @@
                     </div>
                 </div>
                 <div class="steam_generator_content">
-                    <p><span id="steamGenerator_count"></span> литров пара</p>
+                    <h3><span id="steamGenerator_count"></span> литров пара</h3>
+                    <button onmousedown="steam_hold();" onmouseup="steam_release();" id="steam_button">Перегнать пар<br>(Зажать)</button>
+                    <div class="steam_generator_main">
+                        <div class="steam_generator_bar">
+                            <div class="steam_generator_fill" id="steam_generator_fill">
+                            </div>
+                        </div>
+                        <p>Камера: <span id="steamGenerator_volume"></span>/<span id="steamGenerator_maxvolume"></span> литров</p>
+                    </div>
                 </div>
             </div>
         </div>

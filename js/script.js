@@ -9,7 +9,7 @@ if (localStorage.getItem("max_water_volume") == null){max_water_volume = 5;} els
 if (localStorage.getItem("plant_tree_t") == null){plant_tree_t = 10;} else{plant_tree_t = Number(localStorage.getItem("plant_tree_t"));}
 if (localStorage.getItem("steam") == null){steam = 0;} else{steam = Number(localStorage.getItem("steam"));}
 if (localStorage.getItem("steamGenerator_volume") == null){steamGenerator_volume = 0;} else{steamGenerator_volume = Number(localStorage.getItem("steamGenerator_volume"));}
-if (localStorage.getItem("steamGenerator_maxvolume") == null){steamGenerator_maxvolume = 100;} else{steamGenerator_maxvolume = Number(localStorage.getItem("steamGenerator_maxvolume"));}
+if (localStorage.getItem("steamGenerator_maxvolume") == null){steamGenerator_maxvolume = 50;} else{steamGenerator_maxvolume = Number(localStorage.getItem("steamGenerator_maxvolume"));}
 
 // Инициализация нехранимых переменных
 pouring_water = false;
@@ -22,9 +22,10 @@ const burnStartSound = document.getElementById("burnStartSound");
 const burnLoopSound = document.getElementById("burnLoopSound");
 burnLoopSound.loop = true;
 const burnStopSound = document.getElementById("burnStopSound");
-const SparkSound = document.getElementById("SparkSound");
+const sparkSound = document.getElementById("SparkSound");
 denySound.volume = 0.3;
 autosaveSound.volume = 0.1;
+sparkSound.volume = 0.5;
 
 // Инициализация функций
 function update(){
@@ -48,6 +49,8 @@ function update(){
     document.getElementById("max_water_volume").innerHTML = max_water_volume;
     document.getElementById("burn_speed").innerHTML = 0.1;
     document.getElementById("steamGenerator_count").innerHTML = steam.toFixed(2);
+    document.getElementById("steamGenerator_volume").innerHTML = steamGenerator_volume;
+    document.getElementById("steamGenerator_maxvolume").innerHTML = steamGenerator_maxvolume;
     }
     
     
@@ -245,8 +248,8 @@ function boiler_burn(){
     clickSound.load();
     clickSound.play();
     if (boiler_load > 0 && boiler_active == false && water_volume > 0){
-        SparkSound.load();
-        SparkSound.play()
+        sparkSound.load();
+        sparkSound.play()
         burnStartSound.load();
         burnStartSound.play();
         setTimeout(() => {
@@ -259,7 +262,6 @@ function boiler_burn(){
                 water_volume = Number((water_volume - 0.01).toFixed(2));
                 boiler_load = Number((boiler_load - 0.01).toFixed(2));
                 steam = steam + 0.1;
-                energy = Number((energy + 0.025).toFixed(3));
                 update();
             }
             else{
@@ -316,5 +318,68 @@ function pour_water(){
             document.getElementById("pour_water").style.backgroundColor = "rgb(245, 211, 152)";
         }, 100)
         document.getElementById("pour_water").style.transitionDuration = "0s";
+    }
+}
+
+
+function steam_hold() {
+    clickSound.load();
+    clickSound.play();
+    if (steam > 0 && steamGenerator_volume < steamGenerator_maxvolume){
+        steam_fill = setInterval(() =>{
+            if (steam > 0 && steamGenerator_volume < steamGenerator_maxvolume){
+            --steam;
+            ++steamGenerator_volume;
+            document.getElementById("steam_generator_fill").style.width = ((steamGenerator_volume / steamGenerator_maxvolume) * 100) + "%";
+            steam_filling = true;
+            }
+            else{
+                clearInterval(steam_fill)
+            }
+            update();
+        }, 100)
+    }
+    else{
+        denySound.load();
+        denySound.play();
+        document.getElementById("steam_button").style.backgroundColor = "rgb(255, 93, 93)";
+        setTimeout(() => {
+            document.getElementById("steam_button").style.transitionDuration = "0.5s";
+            document.getElementById("steam_button").style.backgroundColor = "rgb(197, 212, 226)";
+        }, 100)
+        document.getElementById("steam_button").style.transitionDuration = "0s";
+    }
+}
+
+
+function steam_release() {
+    clearInterval(steam_fill);
+    steam_filling = false;
+    steam_depleting();
+}
+
+function steam_depleting(){
+    if (steamGenerator_volume > 0 && steam_filling == false){
+        setTimeout(() => {
+            let flag = setInterval(() => {
+                if (steamGenerator_volume > 0 && steam_filling == false){
+                    if (steamGenerator_volume < 5){
+                        steam_penalty = steamGenerator_volume / 5;
+                    }
+                    else {
+                        steam_penalty = 1;
+                    }
+                --steamGenerator_volume;
+                document.getElementById("steam_generator_fill").style.width = ((steamGenerator_volume / steamGenerator_maxvolume) * 100) + "%";
+                energy = energy + 0.25 * steam_penalty;
+                update();
+                }
+                else{
+                    clearInterval(flag);
+                    update();
+                    return;
+                }
+            }, 200)
+        }, 1000)
     }
 }

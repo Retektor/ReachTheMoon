@@ -151,8 +151,42 @@
 
 .steam_generator_content{
     display: flex;
-    justify-content: center;
-    padding: 2vh 0vw 2vh 0vw;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4vh 2vw 4vh 2vw;
+}
+
+.steam_generator_content button{
+    padding: 0vh 0.5vw 0vh 0.5vw;
+    border: 2px solid rgb(155, 178, 199);
+    background-color: rgb(197, 212, 226);
+    padding: 0.5vh 0.5vw 0.5vh 0.5vw;
+    font-size: 12pt;
+}
+
+.steam_generator_content button:hover{
+    background-color: rgb(182, 197, 211);
+}
+
+.steam_generator_main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+}
+
+.steam_generator_bar{
+    width: 30vw;
+    height: 5vh;
+    border: 2px solid black;
+    background-color: rgb(110, 110, 110);
+}
+
+.steam_generator_fill{
+    width: 0%;
+    transition-duration: 0.25s;
+    height: 100%;
+    background: linear-gradient(to right, rgb(204, 204, 204), rgb(255, 255, 255));
 }
 
 .upgrades_window{
