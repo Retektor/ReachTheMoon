@@ -15,23 +15,44 @@
     font-family: Montserrat-Regular;
 }
 
-.body{
-    background-color: aqua;
-}
 
 .main_stats{
-    padding: 1.5vh 0vw 1.5vh 0vw;
+    display: flex;
+    justify-content: center;
+}
+
+.main_stats_content{
+    border-radius: 25px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    padding: 1.5vh 2vw 1.5vh 2vw;
+    width: 15%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1vh;
+    background-color: rgb(175, 109, 33);
+    color: white;
+}
+
+.pollution_bar{
+    border: 2px solid rgb(39, 39, 39);
+    width: 100%;
+    height: 15px;
+}
+
+.pollution_fill{
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right, rgb(78, 0, 0), rgb(136, 0, 0) 75%, rgb(255, 0, 0))
 }
 
 .contents{
     display: flex;
     justify-content: space-around;
-    margin-top: 2vh;
+    padding-top: 2vh;
     width: 100%;
+    /* background: linear-gradient(rgb(28, 59, 143), rgb(0, 17, 65)); */
 }
 
 .left_blocks{
@@ -186,7 +207,7 @@
     width: 0%;
     transition-duration: 0.25s;
     height: 100%;
-    background: linear-gradient(to right, rgb(204, 204, 204), rgb(255, 255, 255));
+    background: linear-gradient(to right, rgb(204, 204, 204) 75%, rgb(255, 255, 255));
 }
 
 .upgrades_window{

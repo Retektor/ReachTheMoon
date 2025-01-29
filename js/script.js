@@ -10,6 +10,8 @@ if (localStorage.getItem("plant_tree_t") == null){plant_tree_t = 10;} else{plant
 if (localStorage.getItem("steam") == null){steam = 0;} else{steam = Number(localStorage.getItem("steam"));}
 if (localStorage.getItem("steamGenerator_volume") == null){steamGenerator_volume = 0;} else{steamGenerator_volume = Number(localStorage.getItem("steamGenerator_volume"));}
 if (localStorage.getItem("steamGenerator_maxvolume") == null){steamGenerator_maxvolume = 50;} else{steamGenerator_maxvolume = Number(localStorage.getItem("steamGenerator_maxvolume"));}
+if (localStorage.getItem("pollution") == null){pollution = 0;} else{pollution = Number(localStorage.getItem("pollution"));}
+if (localStorage.getItem("max_pollution") == null){max_pollution = 1000;} else{max_pollution = Number(localStorage.getItem("max_pollution"));}
 
 // Инициализация нехранимых переменных
 pouring_water = false;
@@ -51,6 +53,8 @@ function update(){
     document.getElementById("steamGenerator_count").innerHTML = steam.toFixed(2);
     document.getElementById("steamGenerator_volume").innerHTML = steamGenerator_volume;
     document.getElementById("steamGenerator_maxvolume").innerHTML = steamGenerator_maxvolume;
+    document.getElementById("pollution_count").innerHTML = Number(pollution.toFixed(1));
+    document.getElementById("pollution_fill").style.width = ((pollution / max_pollution) * 100) + "%";
     }
     
     
@@ -64,6 +68,8 @@ function save(){
     localStorage.setItem("steam", steam);
     localStorage.setItem("steamGenerator_volume", steamGenerator_volume);
     localStorage.setItem("steamGenerator_maxvolume", steamGenerator_maxvolume);
+    localStorage.setItem("pollution", pollution);
+    localStorage.setItem("max_pollution", max_pollution);
     }
 
 
@@ -77,6 +83,17 @@ setInterval(() => {
     }, 500)
     document.getElementById("autosave").style.transitionDuration = "0s";
 }, 60000)
+
+setInterval(() =>{
+    if (pollution > 0){
+        pollution = pollution - trees;
+        update();
+    }
+    else{
+        pollution = 0;
+        update();
+    }
+}, 5000)
 
 update();
 // Инициализация завершена
@@ -262,6 +279,7 @@ function boiler_burn(){
                 water_volume = Number((water_volume - 0.01).toFixed(2));
                 boiler_load = Number((boiler_load - 0.01).toFixed(2));
                 steam = steam + 0.1;
+                pollution = pollution + 0.2;
                 update();
             }
             else{
