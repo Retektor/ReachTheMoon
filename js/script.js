@@ -16,6 +16,7 @@ if (localStorage.getItem("max_pollution") == null){max_pollution = 1000;} else{m
 // Инициализация нехранимых переменных
 pouring_water = false;
 boiler_active = false;
+time_penalty = pollution / max_pollution;
 
 const clickSound = document.getElementById("clickSound");
 const denySound = document.getElementById("denySound");

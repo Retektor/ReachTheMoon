@@ -77,11 +77,18 @@
     background-color: rgb(182, 116, 55);
 }
 
-.trees_header-txt{
+.trees_header-txt div{
     display: flex;
     align-items: center;
     gap: 0.5vw;
     margin: 1vh 1vw 1vh 1vh;
+    color: white;
+}
+
+.trees_header-txt{
+    display: flex;
+    gap: 25vw;
+    align-items: center;
     color: white;
 }
 
@@ -124,11 +131,17 @@
     width: 100%;
 }
 
-.boiler_header-txt{
+.boiler_header-txt div{
     display: flex;
     align-items: center;
     gap: 0.7vw;
     margin: 1vh 1vw 1vh 1.5vh;
+}
+
+.boiler_header-txt{
+    display: flex;
+    gap: 15vw;
+    align-items: center;
 }
 
 .boiler_text{

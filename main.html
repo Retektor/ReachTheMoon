@@ -54,11 +54,13 @@
             <div class="trees_stats">
                 <div class="trees_header">
                     <div class="trees_header-txt">
-                        <img src="img/SaplingIcon.png" alt="SaplingIcon" style="width: 50px;">
-                        <h3>Сад</h3>
+                        <div>
+                            <img src="img/SaplingIcon.png" alt="SaplingIcon" style="width: 50px;">
+                            <h3>Сад</h3>
+                        </div>
+                        <h3><span id="trees_count"></span> дерев<span id="trees_word"></span></h3>
                     </div>
                 </div>
-                <h3><span id="trees_count"></span> дерев<span id="trees_word"></span></h3>
                 <div class="cut_tree">
                     <img src="img/AxeIcon.png" alt="AxeIcon" style="width: 50px;">
                     <button onclick="cut_tree();" id="cut_button" class="cut_button">Вырубить дерево</button>
@@ -74,12 +76,14 @@
             <div class="boiler">
                 <div class="boiler_header">
                     <div class="boiler_header-txt">
-                        <img src="img/FurnaceIcon.png" alt="FurnaceIcon" style="width: 50px;">
-                        <h3>Бойлер</h3>
+                        <div>
+                            <img src="img/FurnaceIcon.png" alt="FurnaceIcon" style="width: 50px;">
+                            <h3>Бойлер</h3>
+                        </div>
+                        <h3>Текущая загрузка бойлера: <span id="boiler_load"></span> ед. дров</h3>
                     </div>
                 </div>
                 <div class="boiler_text">
-                    <h3>Текущая загрузка бойлера: <span id="boiler_load"></span> ед. дров</h3>
                     <p>Наполнение бойлера: <span id="water_volume"></span>/<span id="max_water_volume"></span> л.</p>
                     <p>Скорость сжигания: <span id="burn_speed">0.1</span> ед./с</p>
                 </div>
