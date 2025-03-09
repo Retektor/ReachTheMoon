@@ -55,21 +55,20 @@
                 <div class="trees_header">
                     <div class="trees_header-txt">
                         <div>
-                            <img src="img/SaplingIcon.png" alt="SaplingIcon" style="width: 50px;">
+                            <img src="img/testtree.svg" alt="SaplingIcon">
                             <h3>Сад</h3>
                         </div>
                         <h3><span id="trees_count"></span> дерев<span id="trees_word"></span></h3>
                     </div>
                 </div>
                 <div class="cut_tree">
-                    <img src="img/AxeIcon.png" alt="AxeIcon" style="width: 50px;">
+                    <img src="img/AxeIcon.png" alt="AxeIcon">
                     <button onclick="cut_tree();" id="cut_button" class="cut_button">Вырубить дерево</button>
                     <p><span id="cut_clicks"></span> кликов</p>
                 </div>
                 <div class="plant_tree">
-                    <img src="img/BoneMeal.png" alt="BoneMeal" style="width: 50px;">
+                    <img src="img/BoneMeal.png" alt="BoneMeal">
                     <button onclick="plant_tree();" id="plant_button">Посадить дерево (-1 Дж)</button>
-                    <button onclick="speed_up()" id="speed_up_button">Подбодрить (-0.05 сек.)</button>
                     <p><span id="trees_time"></span> секунд</p>
                 </div>
             </div>
@@ -77,7 +76,7 @@
                 <div class="boiler_header">
                     <div class="boiler_header-txt">
                         <div>
-                            <img src="img/FurnaceIcon.png" alt="FurnaceIcon" style="width: 50px;">
+                            <img src="img/FurnaceIcon.png" alt="FurnaceIcon">
                             <h3>Бойлер</h3>
                         </div>
                         <h3>Текущая загрузка бойлера: <span id="boiler_load"></span> ед. дров</h3>
@@ -99,7 +98,7 @@
             <div class="steam_generator">
                 <div class="steam_generator_header">
                     <div class="steam_generator_header-txt">
-                        <img src="img/SteamIcon.png" alt="SteamGenerator" style="width: 50px;">
+                        <img src="img/SteamIcon.png" alt="SteamGenerator">
                         <h3>Парогенератор</h3>
                     </div>
                 </div>
@@ -107,8 +106,10 @@
                     <h3><span id="steamGenerator_count"></span> литров пара</h3>
                     <button onmousedown="steam_hold();" onmouseup="steam_release();" id="steam_button">Перегнать пар<br>(Зажать)</button>
                     <div class="steam_generator_main">
-                        <div class="steam_generator_bar">
-                            <div class="steam_generator_fill" id="steam_generator_fill">
+                        <div class="steam_generator-bar">
+                            <img src="img/steambar2.svg" alt="">
+                            <div class="steam_bar-back">
+                                <div class="steam_bar-fill" id="steam_bar-fill"></div>
                             </div>
                         </div>
                         <p>Камера: <span id="steamGenerator_volume"></span>/<span id="steamGenerator_maxvolume"></span> литров</p>
@@ -117,14 +118,33 @@
             </div>
         </div>
         <div class="upgrades_window">
-            <button><h4>Крепкий корпус</h4><p>Ускорить сжигание на 0.2 ед./c</p></button>
-            <button><h4>Вторые руки</h4><p>Увеличить количество сажаемых/вырубаемых деревьев в 2 раза</p></button>
-            <button><h4>Острый топор</h4><p>Уменьшить количество кликов рубки на 5</p></button>
-            <button><h4>Теплоизоляция</h4><p>Увеличить скорость сжигания на 0.5 ед./c</p></button>
-            <button><h4>Удобрения</h4><p>Увеличить скорость сажания дерева на 20%</p></button>
-            <button><h4>Новый сорт</h4><p>10% шанс посадить крепкое дерево, которое даёт в 2 раза больше дерева</p></button>
-            <button><h4>Замкнутая цепь сгорания</h4><p>За каждую секунду, который горит бойлер, увеличение скорости на 1%</p></button>
-            <button><h4>Водопроводная система</h4><p>Налитие воды, когда она заканчивается</p></button>
+            <h2>Улучшения</h2>
+            <div class="upgrade">
+                <button id="burn01">Тест</button>
+                <!--  -->
+                <div class="upgrade_description">
+                    <div class="upgrade-header">
+                        <h3>Крепкий корпус</h3>
+                        <h3>Цена: 10 Дж</h3>
+                    </div>
+                    <p>Замена корпуса на более крепкий позволяет увеличить предел температуры сжигания.</p>
+                    <div class="upg_stat">
+                        <div class="upg_p_s">+</div>
+                        <p>Увеличить сжигание на 0.2 ед./с.</p>
+                    </div>
+                    <div class="upg_stat">
+                        <div class="upg_c_s">−</div>
+                        <p>Раз в 3 минуты сайт взрывается :3</p>
+                    </div>
+                </div>
+            </div>
+            <button><h3>Вторые руки</h3><p>Увеличить количество сажаемых/вырубаемых деревьев в 2 раза</p></button>
+            <button><h3>Острый топор</h3><p>Уменьшить количество кликов рубки на 5</p></button>
+            <button><h3>Теплоизоляция</h3><p>Увеличить скорость сжигания на 0.5 ед./c</p></button>
+            <button><h3>Удобрения</h3><p>Увеличить скорость сажания дерева на 20%</p></button>
+            <button><h3>Новый сорт</h3><p>10% шанс посадить крепкое дерево, которое даёт в 2 раза больше дерева</p></button>
+            <button><h3>Замкнутая цепь сгорания</h3><p>За каждую секунду, который горит бойлер, увеличение скорости на 1%</p></button>
+            <button><h3>Водопроводная система</h3><p>Налитие воды, когда она заканчивается</p></button>
         </div>
     </div>
 

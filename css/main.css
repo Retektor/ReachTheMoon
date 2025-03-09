@@ -15,6 +15,10 @@
     font-family: Montserrat-Regular;
 }
 
+body button{
+    cursor: pointer;
+}
+
 
 .main_stats{
     display: flex;
@@ -59,7 +63,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 3vh;
+    gap: 2vh;
     margin: 0px 3vw 0px 3vw;
 }
 
@@ -92,6 +96,10 @@
     color: white;
 }
 
+.trees_header-txt img{
+    width: 64px;
+}
+
 .trees_stats button{
     padding: 0.5vh 0.5vw 0.5vh 0.5vw;
     background-color: rgb(210, 125, 50);
@@ -110,10 +118,19 @@
     gap: 1vw;
 }
 
+.cut_tree img{
+    width: 50px;
+}
+
+
 .plant_tree{
     display: flex;
     align-items: center;
     gap: 1vw;
+}
+
+.plant_tree img{
+    width: 50px;
 }
 
 .boiler{
@@ -131,17 +148,21 @@
     width: 100%;
 }
 
+.boiler_header-txt{
+    display: flex;
+    gap: 15vw;
+    align-items: center;
+}
+
+.boiler_header-txt img{
+    width: 50px;
+}
+
 .boiler_header-txt div{
     display: flex;
     align-items: center;
     gap: 0.7vw;
     margin: 1vh 1vw 1vh 1.5vh;
-}
-
-.boiler_header-txt{
-    display: flex;
-    gap: 15vw;
-    align-items: center;
 }
 
 .boiler_text{
@@ -183,6 +204,10 @@
     padding: 1vh 1vw 1vh 1vh;
 }
 
+.steam_generator_header-txt img{
+    width: 50px;
+}
+
 .steam_generator_content{
     display: flex;
     justify-content: space-between;
@@ -209,30 +234,90 @@
     gap: 1vh;
 }
 
-.steam_generator_bar{
-    width: 30vw;
-    height: 5vh;
-    border: 2px solid black;
-    background-color: rgb(110, 110, 110);
+.steam_generator-bar{
+    width: 512px;
+    height: 71px;
 }
 
-.steam_generator_fill{
-    width: 0%;
-    transition-duration: 0.25s;
+.steam_generator-bar img{
+    position: absolute;
+}
+
+.steam_bar-back{
+    background-color: #4b5459;
+    width: calc(100% - 20px);
     height: 100%;
-    background: linear-gradient(to right, rgb(204, 204, 204) 75%, rgb(255, 255, 255));
+    margin: 0px 10px 0px 10px;
+}
+
+.steam_bar-fill{
+    width: 0%;
+    height: 100%;
+    transition: 0.25s;
+    background-color: rgb(219, 219, 255);
 }
 
 .upgrades_window{
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 2vh;
     width: 25vw;
     margin: 0px 3vw 0px 3vw;
 }
 
 .upgrades_window button{
-    padding: 0vh 0.5vw 0vh 0.5vw;
+    padding: 0.5vh 0.5vw 0.5vh 0.5vw;
+    width: 100%;
+}
+
+.upgrades_window button:hover{
+    background-color: rgb(223, 213, 238);
+}
+
+.upgrade{
+    position: relative;
+}
+
+.upgrade button{
+    width: 64px;
+    height: 64px;
+}
+
+.upgrade_description{
+    display: none;
+    position: absolute;
+    right: 8vw;
+    width: 500px;
+    height: auto;
+    background-color: rgb(210, 125, 50, 0.95);
+    border: 3px solid rgb(129, 72, 19, 0.95);
+    padding: 1vh 2vw 2vw 1vh;
+}
+
+.upgrade-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.upgrade:hover .upgrade_description{
+    display: block;
+}
+
+.upg_stat{
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+}
+
+.upg_p_s{
+    color: green;
+    font-size: 1.5em;
+}
+
+.upg_c_s{
+    color: rgb(122, 0, 0);
+    font-size: 1.5em;
 }
 
 .versionNumber{

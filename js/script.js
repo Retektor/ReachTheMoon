@@ -56,6 +56,10 @@ function update(){
     document.getElementById("steamGenerator_maxvolume").innerHTML = steamGenerator_maxvolume;
     document.getElementById("pollution_count").innerHTML = Number(pollution.toFixed(1));
     document.getElementById("pollution_fill").style.width = ((pollution / max_pollution) * 100) + "%";
+    if (steam < 0)
+    {
+        steam = 0;
+    }
     }
     
     
@@ -76,7 +80,6 @@ function save(){
 
 setInterval(() => {
     save();
-    autosaveSound.play();
     document.getElementById("autosave").style.opacity = "100%";
     setTimeout(() => {
         document.getElementById("autosave").style.transitionDuration = "3s";
@@ -128,27 +131,6 @@ function plant_tree(){
             document.getElementById("plant_button").style.backgroundColor = "rgb(210, 125, 50)";
         }, 100)
         document.getElementById("plant_button").style.transitionDuration = "0s";
-    }
-}
-
-function speed_up(){
-    if (plant_tree_t < 10){
-        clickSound.load();
-        clickSound.play();
-        plant_tree_t = plant_tree_t - 0.05;
-        update();
-    }
-    else{
-        clickSound.load();
-        clickSound.play();
-        denySound.load();
-        denySound.play();
-        document.getElementById("speed_up_button").style.backgroundColor = "rgb(255, 93, 93)";
-        setTimeout(() => {
-            document.getElementById("speed_up_button").style.transitionDuration = "0.5s";
-            document.getElementById("speed_up_button").style.backgroundColor = "rgb(210, 125, 50)";
-        }, 100)
-        document.getElementById("speed_up_button").style.transitionDuration = "0s";
     }
 }
 
@@ -346,11 +328,11 @@ function steam_hold() {
     clickSound.play();
     if (steam > 0 && steamGenerator_volume < steamGenerator_maxvolume){
         steam_fill = setInterval(() =>{
+            steam_filling = true;
             if (steam > 0 && steamGenerator_volume < steamGenerator_maxvolume){
             --steam;
             ++steamGenerator_volume;
-            document.getElementById("steam_generator_fill").style.width = ((steamGenerator_volume / steamGenerator_maxvolume) * 100) + "%";
-            steam_filling = true;
+            document.getElementById("steam_bar-fill").style.width = ((steamGenerator_volume / steamGenerator_maxvolume) * 100) + "%";
             }
             else{
                 clearInterval(steam_fill)
@@ -389,7 +371,7 @@ function steam_depleting(){
                         steam_penalty = 1;
                     }
                 --steamGenerator_volume;
-                document.getElementById("steam_generator_fill").style.width = ((steamGenerator_volume / steamGenerator_maxvolume) * 100) + "%";
+                document.getElementById("steam_bar-fill").style.width = ((steamGenerator_volume / steamGenerator_maxvolume) * 100) + "%";
                 energy = energy + 0.25 * steam_penalty;
                 update();
                 }
