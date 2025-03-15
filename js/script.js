@@ -1,17 +1,74 @@
 // Получение данных из локального хранилища
-if (localStorage.getItem("energy") == null){energy = 1;} else{energy = Number(localStorage.getItem("energy"));}
-if (localStorage.getItem("wood") == null){wood = 0;} else{wood = Number(localStorage.getItem("wood"));}
-if (localStorage.getItem("trees") == null){trees = 0;} else{trees = Number(localStorage.getItem("trees"));}
-if (localStorage.getItem("cut_tree_c") == null){cut_tree_c = 25;} else{cut_tree_c = Number(localStorage.getItem("cut_tree_c"));}
-if (localStorage.getItem("boiler_load") == null){boiler_load = 0;} else{boiler_load = Number(localStorage.getItem("boiler_load"));}
-if (localStorage.getItem("water_volume") == null){water_volume = 0;} else{water_volume = Number(localStorage.getItem("water_volume"));}
-if (localStorage.getItem("max_water_volume") == null){max_water_volume = 5;} else{max_water_volume = Number(localStorage.getItem("max_water_volume"));}
-if (localStorage.getItem("plant_tree_t") == null){plant_tree_t = 10;} else{plant_tree_t = Number(localStorage.getItem("plant_tree_t"));}
-if (localStorage.getItem("steam") == null){steam = 0;} else{steam = Number(localStorage.getItem("steam"));}
-if (localStorage.getItem("steamGenerator_volume") == null){steamGenerator_volume = 0;} else{steamGenerator_volume = Number(localStorage.getItem("steamGenerator_volume"));}
-if (localStorage.getItem("steamGenerator_maxvolume") == null){steamGenerator_maxvolume = 50;} else{steamGenerator_maxvolume = Number(localStorage.getItem("steamGenerator_maxvolume"));}
-if (localStorage.getItem("pollution") == null){pollution = 0;} else{pollution = Number(localStorage.getItem("pollution"));}
-if (localStorage.getItem("max_pollution") == null){max_pollution = 1000;} else{max_pollution = Number(localStorage.getItem("max_pollution"));}
+if (localStorage.getItem("energy") == null)
+    {energy = 1;} 
+else
+{energy = Number(localStorage.getItem("energy"));}
+
+if (localStorage.getItem("wood") == null)
+    {wood = 0;} 
+else
+{wood = Number(localStorage.getItem("wood"));}
+
+if (localStorage.getItem("trees") == null)
+    {trees = 0;} 
+else
+{trees = Number(localStorage.getItem("trees"));}
+
+if (localStorage.getItem("cut_tree_c") == null)
+    {cut_tree_c = 25;} 
+else
+{cut_tree_c = Number(localStorage.getItem("cut_tree_c"));}
+
+if (localStorage.getItem("boiler_load") == null)
+    {boiler_load = 0;} 
+else
+{boiler_load = Number(localStorage.getItem("boiler_load"));}
+
+if (localStorage.getItem("water_volume") == null)
+    {water_volume = 0;} 
+else
+{water_volume = Number(localStorage.getItem("water_volume"));}
+
+if (localStorage.getItem("max_water_volume") == null)
+    {max_water_volume = 5;} 
+else
+{max_water_volume = Number(localStorage.getItem("max_water_volume"));}
+
+if (localStorage.getItem("plant_tree_t") == null)
+    {plant_tree_t = 10;} 
+else
+{plant_tree_t = Number(localStorage.getItem("plant_tree_t"));}
+
+if (localStorage.getItem("steam") == null)
+    {steam = 0;} 
+else
+{steam = Number(localStorage.getItem("steam"));}
+
+if (localStorage.getItem("steamGenerator_volume") == null)
+    {steamGenerator_volume = 0;} 
+else
+{steamGenerator_volume = Number(localStorage.getItem("steamGenerator_volume"));}
+
+if (localStorage.getItem("steamGenerator_maxvolume") == null)
+    {steamGenerator_maxvolume = 50;} 
+else
+{steamGenerator_maxvolume = Number(localStorage.getItem("steamGenerator_maxvolume"));}
+
+if (localStorage.getItem("pollution") == null)
+    {pollution = 0;} 
+else
+{pollution = Number(localStorage.getItem("pollution"));}
+
+if (localStorage.getItem("max_pollution") == null)
+    {max_pollution = 1000;} 
+else
+{max_pollution = Number(localStorage.getItem("max_pollution"));}
+
+// Улучшения
+trees_upgrades = [5]
+burn_upgrades = [0]
+boiler_upgrades = [0]
+steam_upgrades = [0]
 
 // Инициализация нехранимых переменных
 pouring_water = false;
@@ -75,6 +132,7 @@ function save(){
     localStorage.setItem("steamGenerator_maxvolume", steamGenerator_maxvolume);
     localStorage.setItem("pollution", pollution);
     localStorage.setItem("max_pollution", max_pollution);
+    localStorage.setItem("cut_tree_c", cut_tree_c);
     }
 
 
@@ -91,17 +149,19 @@ setInterval(() => {
 setInterval(() =>{
     if (pollution > 0){
         pollution = pollution - trees;
-        update();
     }
     else{
         pollution = 0;
-        update();
     }
 }, 5000)
 
-update();
+setInterval(() => {
+    update();
+}, 100)
+
 // Инициализация завершена
 
+// Основные функции
 
 function plant_tree(){
     clickSound.load();
@@ -111,13 +171,11 @@ function plant_tree(){
         let flag = setInterval(() => {
             if (plant_tree_t > 0) {
                 plant_tree_t = Number((plant_tree_t - 0.1).toFixed(1));
-                update();
             }
             else {
                 clearInterval(flag);
                 plant_tree_t = Number((10).toFixed(2));
                 trees++;
-                update();
                 return;
             }
         }, 100);
@@ -134,7 +192,6 @@ function plant_tree(){
     }
 }
 
-
 function cut_tree(){
     clickSound.load();
     clickSound.play();
@@ -143,9 +200,8 @@ function cut_tree(){
         if (cut_tree_c == 0){
             ++wood
             --trees
-            cut_tree_c = 25;
+            cut_tree_c = 25 - trees_upgrades[0];
         }
-        update();
     }
     else{
         denySound.load();
@@ -166,7 +222,6 @@ function boiler_add1(){
     if (wood > 0 && boiler_active == false) {
         ++boiler_load;
         --wood;
-        update();
     }
     else{
         denySound.load();
@@ -187,8 +242,7 @@ function boiler_add10(){
     if (wood >= 10 && boiler_active == false) {
         boiler_load = boiler_load + 10;
         wood = wood - 10;
-        update();
-    }
+}
     else {
         denySound.load();
         denySound.play();
@@ -208,7 +262,6 @@ function boiler_remove1(){
     if (boiler_load > 0 && boiler_active == false) {
         --boiler_load;
         ++wood;
-        update();
     }
     else{
         denySound.load();
@@ -229,7 +282,6 @@ function boiler_remove10(){
     if (boiler_load >= 10 && boiler_active == false) {
         boiler_load = boiler_load - 10;
         wood = wood + 10;
-        update();
     }
     else {
         denySound.load();
@@ -263,7 +315,6 @@ function boiler_burn(){
                 boiler_load = Number((boiler_load - 0.01).toFixed(2));
                 steam = steam + 0.1;
                 pollution = pollution + 0.2;
-                update();
             }
             else{
                 burnLoopSound.load();
@@ -272,7 +323,6 @@ function boiler_burn(){
                 burnLoopSound.currentTime = 0;
                 clearInterval(flag)
                 boiler_active = false;
-                update();
                 return;
             }
         }, 100)
@@ -299,13 +349,11 @@ function pour_water(){
                 pouring_water = true;
                 boiler_active = true;
                 water_volume = Number((water_volume + 0.1).toFixed(2));
-                update();
             }
             else {
                 clearInterval(flag);
                 boiler_active = false;
                 pouring_water = false;
-                update();
                 return;
             }
         }, 100)
@@ -337,7 +385,6 @@ function steam_hold() {
             else{
                 clearInterval(steam_fill)
             }
-            update();
         }, 100)
     }
     else{
@@ -373,11 +420,9 @@ function steam_depleting(){
                 --steamGenerator_volume;
                 document.getElementById("steam_bar-fill").style.width = ((steamGenerator_volume / steamGenerator_maxvolume) * 100) + "%";
                 energy = energy + 0.25 * steam_penalty;
-                update();
                 }
                 else{
                     clearInterval(flag);
-                    update();
                     return;
                 }
             }, 200)

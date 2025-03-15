@@ -81,19 +81,21 @@ body button{
     background-color: rgb(182, 116, 55);
 }
 
-.trees_header-txt div{
+.trees_header-txt{
+    color: white;
     display: flex;
     align-items: center;
-    gap: 0.5vw;
-    margin: 1vh 1vw 1vh 1vh;
-    color: white;
 }
 
-.trees_header-txt{
+.trees_header-name{
     display: flex;
-    gap: 25vw;
     align-items: center;
-    color: white;
+}
+
+.trees_header-units{
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .trees_header-txt img{
@@ -150,7 +152,6 @@ body button{
 
 .boiler_header-txt{
     display: flex;
-    gap: 15vw;
     align-items: center;
 }
 
@@ -158,11 +159,17 @@ body button{
     width: 50px;
 }
 
-.boiler_header-txt div{
+.boiler_header-name{
+    padding: 0.75%;
     display: flex;
     align-items: center;
-    gap: 0.7vw;
-    margin: 1vh 1vw 1vh 1.5vh;
+    gap: 1vw;
+}
+
+.boiler_header-units{
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .boiler_text{
@@ -241,6 +248,8 @@ body button{
 
 .steam_generator-bar img{
     position: absolute;
+    object-fit: cover;
+    width: auto;
 }
 
 .steam_bar-back{
@@ -260,22 +269,32 @@ body button{
 .upgrades_window{
     display: flex;
     flex-direction: column;
+    gap: 3vh;
     align-items: center;
-    gap: 2vh;
-    width: 25vw;
-    margin: 0px 3vw 0px 3vw;
 }
 
-.upgrades_window button{
+.upgrades_grid{
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    gap: 2vh;
+    width: auto;
+    margin: 0vh 3vw 0vh 3vw;
+}
+
+.upgrades_grid button{
     padding: 0.5vh 0.5vw 0.5vh 0.5vw;
     width: 100%;
 }
 
-.upgrades_window button:hover{
+.upgrades_grid button :hover{
     background-color: rgb(223, 213, 238);
 }
 
 .upgrade{
+    width: 64px;
+    height: 64px;
     position: relative;
 }
 
@@ -285,29 +304,39 @@ body button{
 }
 
 .upgrade_description{
+    z-index: 1;
     display: none;
     position: absolute;
-    right: 8vw;
+    right: 4vw;
+    top: -5vh;
     width: 500px;
     height: auto;
     background-color: rgb(210, 125, 50, 0.95);
     border: 3px solid rgb(129, 72, 19, 0.95);
-    padding: 1vh 2vw 2vw 1vh;
+    padding: 1vh 2vw 1vw 1vh;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .upgrade-header{
     display: flex;
     justify-content: space-between;
+    padding-bottom: 1vh;
+}
+
+.upgrade-text{
+    margin: 0.5vh 0vw 0.5vh 0vw;
 }
 
 .upgrade:hover .upgrade_description{
-    display: block;
+    display: flex;
 }
 
 .upg_stat{
+    margin: 0.5vh 0vw 0vh 0vw;
     display: flex;
     align-items: center;
-    gap: 1vh;
+    gap: 0.5vw;
 }
 
 .upg_p_s{

@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Reach the Moon!</title>
-        <link rel="icon" type="image/x-icon" href="img/MoonIcon.png">
+        <link rel="icon" href="img/MoonIcon.png">
         <link rel="stylesheet" href="css/main.css">
     </head>
 <body>
@@ -33,7 +33,7 @@
 
     <!-- Номер версии и прочие технические элементы -->
     <div class="versionNumber">
-        <p>v0.2</p>
+        <p>v0.3</p>
     </div>
     <div class="autosave" id="autosave">
         <p>Автосохранение...</p>
@@ -50,15 +50,20 @@
         </div>
     </div>
     <div class="contents">
+
+        <!-- Левые блоки -->
         <div class="left_blocks">
+            <!-- Сад -->
             <div class="trees_stats">
                 <div class="trees_header">
                     <div class="trees_header-txt">
-                        <div>
+                        <div class="trees_header-name">
                             <img src="img/testtree.svg" alt="SaplingIcon">
                             <h3>Сад</h3>
                         </div>
-                        <h3><span id="trees_count"></span> дерев<span id="trees_word"></span></h3>
+                        <div class="trees_header-units">
+                            <h3><span id="trees_count"></span> дерев<span id="trees_word"></span></h3>
+                        </div>
                     </div>
                 </div>
                 <div class="cut_tree">
@@ -72,14 +77,18 @@
                     <p><span id="trees_time"></span> секунд</p>
                 </div>
             </div>
+
+            <!-- Бойлер -->
             <div class="boiler">
                 <div class="boiler_header">
                     <div class="boiler_header-txt">
-                        <div>
+                        <div class="boiler_header-name">
                             <img src="img/FurnaceIcon.png" alt="FurnaceIcon">
                             <h3>Бойлер</h3>
                         </div>
-                        <h3>Текущая загрузка бойлера: <span id="boiler_load"></span> ед. дров</h3>
+                        <div class="boiler_header-units">
+                            <h3>Текущая загрузка бойлера: <span id="boiler_load"></span> ед. дров</h3>
+                        </div>
                     </div>
                 </div>
                 <div class="boiler_text">
@@ -95,6 +104,8 @@
                     <button onclick="boiler_add10();" id="boiler_add10">+10</button>
                 </div>
             </div>
+
+            <!-- Парогенератор -->
             <div class="steam_generator">
                 <div class="steam_generator_header">
                     <div class="steam_generator_header-txt">
@@ -117,34 +128,118 @@
                 </div>
             </div>
         </div>
+
+        <!-- Улучшения -->
         <div class="upgrades_window">
-            <h2>Улучшения</h2>
-            <div class="upgrade">
-                <button id="burn01">Тест</button>
-                <!--  -->
-                <div class="upgrade_description">
-                    <div class="upgrade-header">
-                        <h3>Крепкий корпус</h3>
-                        <h3>Цена: 10 Дж</h3>
+            <div>
+                <h2>Улучшения</h2>
+            </div>
+            <div class="upgrades_grid">
+                <div class="upgrade">
+                    <button id="burn01">1</button>
+                    <div class="upgrade_description">
+                        <div class="upgrade-header">
+                            <h3>Крепкий корпус</h3>
+                            <h3>Цена: 10 Дж</h3>
+                        </div>
+                        <p class="upgrade-text">Замена корпуса на более крепкий позволяет увеличить предел температуры сжигания внутри бойлера.</p>
+                        <div class="upg_stat">
+                            <div class="upg_p_s">+</div>
+                            <p>Бойлер: Увеличить сжигание на 0.2 ед./с.</p>
+                        </div>
                     </div>
-                    <p>Замена корпуса на более крепкий позволяет увеличить предел температуры сжигания.</p>
-                    <div class="upg_stat">
-                        <div class="upg_p_s">+</div>
-                        <p>Увеличить сжигание на 0.2 ед./с.</p>
+                </div>
+                <div class="upgrade">
+                    <button id="tree01">
+                        <img src="img/testtree.svg" alt="SaplingIcon">
+                    </button>
+                    <div class="upgrade_description">
+                        <div class="upgrade-header">
+                            <h3>Острый топор</h3>
+                            <h3>Цена: 10 Дж</h3>
+                        </div>
+                        <p class="upgrade-text">Заточка старого топора делает его острее, а удары – эффективнее.</p>
+                        <div class="upg_stat">
+                            <div class="upg_p_s">+</div>
+                            <p>Сад: Количество кликов рубки дерева снижено на 5</p>
+                        </div>
                     </div>
-                    <div class="upg_stat">
-                        <div class="upg_c_s">−</div>
-                        <p>Раз в 3 минуты сайт взрывается :3</p>
+                </div>
+                <div class="upgrade">
+                    <button id="burn02">3</button>
+                    <div class="upgrade_description">
+                        <div class="upgrade-header">
+                            <h3>Теплоизоляция</h3>
+                            <h3>Цена: 10 Дж</h3>
+                        </div>
+                        <p class="upgrade-text">Дополнительный слой обшивки из теплоизоляционного материала позволяет сохранять тепло намного дольше.</p>
+                        <div class="upg_stat">
+                            <div class="upg_p_s">+</div>
+                            <p>Бойлер: Увеличить скорость сжигания на 0.5 ед./c</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="upgrade">
+                    <button id="tree02">
+                        <img src="img/testtree.svg" alt="SaplingIcon">
+                    </button>
+                    <div class="upgrade_description">
+                        <div class="upgrade-header">
+                            <h3>Удобрение</h3>
+                            <h3>Цена: 10 Дж</h3>
+                        </div>
+                        <p class="upgrade-text">Экспериментальное дополнительное питание ускоряет метаболизм дерева, заставляя его расти быстрее.</p>
+                        <div class="upg_stat">
+                            <div class="upg_p_s">+</div>
+                            <p>Сад: Увеличить скорость сажания дерева на 10%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="upgrade">
+                    <button id="tree03">
+                        <img src="img/testtree.svg" alt="SaplingIcon">
+                    </button>
+                    <div class="upgrade_description">
+                        <div class="upgrade-header">
+                            <h3>Новый сорт</h3>
+                            <h3>Цена: 10 Дж</h3>
+                        </div>
+                        <p class="upgrade-text">Купленный у Фонда природы новый сорт деревьев делает их крепче и объёмнее.</p>
+                        <div class="upg_stat">
+                            <div class="upg_p_s">+</div>
+                            <p>Сад: 10% шанс посадить тёмный дуб, который даёт х2 дерева</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="upgrade">
+                    <button id="burn03">6</button>
+                    <div class="upgrade_description">
+                        <div class="upgrade-header">
+                            <h3>Замкнутая цепь сгорания</h3>
+                            <h3>Цена: 10 Дж</h3>
+                        </div>
+                        <p class="upgrade-text">Замыкая цикл выделения тепла, бойлер нагревается сильнее, чем дольше он горит.</p>
+                        <div class="upg_stat">
+                            <div class="upg_p_s">+</div>
+                            <p>Бойлер: За каждую секунду, который горит бойлер, скорость увеличивается на 1%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="upgrade">
+                    <button id="boiler02">7</button>
+                    <div class="upgrade_description">
+                        <div class="upgrade-header">
+                            <h3>Водопровод</h3>
+                            <h3>Цена: 10 Дж</h3>
+                        </div>
+                        <p class="upgrade-text">Подключение водопроводной системы к бойлеру позволяет ему набирать воду, когда она заканчивается.</p>
+                        <div class="upg_stat">
+                            <div class="upg_p_s">+</div>
+                            <p>Бойлер: Вода автоматически наливается, когда камера становится пустой.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <button><h3>Вторые руки</h3><p>Увеличить количество сажаемых/вырубаемых деревьев в 2 раза</p></button>
-            <button><h3>Острый топор</h3><p>Уменьшить количество кликов рубки на 5</p></button>
-            <button><h3>Теплоизоляция</h3><p>Увеличить скорость сжигания на 0.5 ед./c</p></button>
-            <button><h3>Удобрения</h3><p>Увеличить скорость сажания дерева на 20%</p></button>
-            <button><h3>Новый сорт</h3><p>10% шанс посадить крепкое дерево, которое даёт в 2 раза больше дерева</p></button>
-            <button><h3>Замкнутая цепь сгорания</h3><p>За каждую секунду, который горит бойлер, увеличение скорости на 1%</p></button>
-            <button><h3>Водопроводная система</h3><p>Налитие воды, когда она заканчивается</p></button>
         </div>
     </div>
 
